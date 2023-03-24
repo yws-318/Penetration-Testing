@@ -34,3 +34,4 @@ GRANT ALL PRIVILEGES ON *.* TO 'yws'@'localhost';
 - *.*      : 모든 데이터베이스의 권한 부여
 - energy.* : energy 데이터베이스의 모든 권한 부여
 ~WITH GRANT OPTION;~
+
