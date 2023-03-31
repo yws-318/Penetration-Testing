@@ -33,13 +33,13 @@ USE c318;<br />
 
 - **유저 만들기**<br />
 CREATE USER 'yws'@'localhost' IDENTIFIED BY 'password';<br />
--- localhost : 내부 네트워크<br />
--- %         : 모든 IP 허용<br />
+-localhost : 내부 네트워크<br />
+-%         : 모든 IP 허용<br />
 <br />
 
 - **유저 권한 부여**<br />
-GRANT ALL PRIVILEGES ON *.* TO 'yws'@'localhost';<br />
--- *.*      : 모든 데이터베이스의 권한 부여<br />
--- energy.* : energy 데이터베이스의 모든 권한 부여<br />
+GRANT ALL PRIVILEGES ON \*.\* TO 'yws'@'localhost';<br />
+-\*.\*      : 모든 데이터베이스의 권한 부여<br />
+-energy.* : energy 데이터베이스의 모든 권한 부여<br />
 ~WITH GRANT OPTION;~<br />
 
