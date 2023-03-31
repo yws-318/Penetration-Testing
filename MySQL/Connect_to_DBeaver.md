@@ -17,17 +17,17 @@ sudo nano mysqld.cnf<br />
 <br />
 들어가서 <br />
 <br />
-bind-address = 127.0.0.1
+bind-address = 127.0.0.1<br />
 mysqlx-bind-address = 127.0.0.1<br />
 <br />
 위 두 코드를 주석처리 (#)<br />
 <br />
-Ctrl + s : 저장하기
+Ctrl + s : 저장하기<br />
 Ctrl + x : 나가기<br />
 <br />
 sudo systemctl restart mysql<br />
 <br />
-netstat -nap | grep LISTEN
+netstat -nap | grep LISTEN<br />
 LISTEN 상태인 포트만 출력<br />
 <br />
 ifconfig<br />
@@ -36,26 +36,26 @@ inet ***.***.***.*** <br />
 <br />
 ip 확인 후 <br />
 <br />
-(DBeaver)
-새로운 db연결
-Server Host : ***.***.***.***
-Port        : 3306
-Database    : energy
-Username    : yws
+(DBeaver)<br />
+새로운 db연결<br />
+Server Host : ***.***.***.***<br />
+Port        : 3306<br />
+Database    : energy<br />
+Username    : yws<br />
 Password    : ********<br />
 <br />
 Test Connection 연결 상태 확인<br />
 <br />
 (VMware) 
-Edit - Virtual Network Editer
+Edit - Virtual Network Editer<br />
 Change Settings<br />
 <br />
 ifconfig inet과 비슷한 ip확인 후 Host Connetion이 Connected가 아니라면<br />
 <br />
-VMnet* 클릭 - Connect a host virtual adapter to this network (check)
+VMnet* 클릭 - Connect a host virtual adapter to this network (check)<br />
 Apply - OK<br />
 <br />
-(DBeaver) 
+(DBeaver) <br />
 Test Connection<br />
 <br />
 완료.<br />
