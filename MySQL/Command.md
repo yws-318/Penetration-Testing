@@ -41,5 +41,5 @@ CREATE USER 'yws'@'localhost' IDENTIFIED BY 'password';<br />
 GRANT ALL PRIVILEGES ON \*.\* TO 'yws'@'localhost';<br />
 -\*.\*      : 모든 데이터베이스의 권한 부여<br />
 -energy.* : energy 데이터베이스의 모든 권한 부여<br />
-~WITH GRANT OPTION;~<br />
+WITH GRANT OPTION;<br />
 
