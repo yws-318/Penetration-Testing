@@ -5,5 +5,5 @@
 
 ## Weekly Study
 
--**[1주차]**(./Master Plan/Week 1/수업정리.md)<br />
+1️⃣ [1주차](./Master Plan/Week 1/수업정리.md)<br />
 
