@@ -5,5 +5,5 @@
 
 ## Weekly Study
 
-➡ [1주차 내용 정리](https://github.com/yws-318/Penetration-Testing/blob/main/Master%20Plan/Week%201/%EC%88%98%EC%97%85%EC%A0%95%EB%A6%AC.md)<br />
+➡ [1주차](https://github.com/yws-318/Penetration-Testing/tree/main/Master%20Plan/Week%201)<br />
 
