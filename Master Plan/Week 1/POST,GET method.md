@@ -40,8 +40,8 @@ echo "name is $name, age is $age";
 
 GET방식은 url에 데이터를 담아 이동하기 때문에 url을 수정하면 정보를 바꿀 수 있다.   
 
-localhost/start.php<u>?name=yws&age=22   
+localhost/start.php<u>?name=yws&age=22</u>
 
-<u>**?name=yws&age=22**
+**?name=(내가 넣을 이름 정보)&age=(내가 넣을 나이 정보)**
 
 ![get](https://user-images.githubusercontent.com/106296883/229534400-69d8eadf-30a3-48fa-b547-5379b127bb4d.PNG)
