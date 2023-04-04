@@ -28,10 +28,10 @@ use test;
 
 table 만들기
 ```sql
-mysql> create table test(
-    ->     anything varchar(20),
-    ->     intnumber int(10)
-    -> );
+create table test(
+    anything varchar(20),
+    intnumber int(10)
+);
 ```
 </br>
 
