@@ -102,6 +102,7 @@ PDO 외에도 mysql_ 계열의 함수가 있으나 PHP 7 이상에서는 사용 
 ```
 </br>
 </br>
+</br>
 
 # function db_select()
 PHP에서 MySQL 데이터베이스에서 데이터를 가져오기 위한 코드
@@ -182,6 +183,7 @@ finally는 오류가 발생해도 실행되는 구문이므로 쿼리의 성공/
 ```
 </br>
 </br>
+</br>
 
 ## db_select 함수 사용법
 파라미터가 없는 경우 db_select(쿼리 문자열); 형태로 사용한다.
@@ -198,8 +200,8 @@ db_select("select * from tbl_person where person_id = :person_id", array('person
 ```
 </br>
 </br>
-쿼리에 파라미터를 전달하는 방법은 두개가 있다.
 
+쿼리에 파라미터를 전달하는 방법은 두개가 있다.   
 첫번째로는 쿼리 문자열 안에 ? 로 넣는 것이다. 이 때 파라미터 배열은 순차 배열로 전달하며 ? 의 갯수만큼 순서대로 적용된다.
 ```php
 db_select("select * from tbl_person where person_id = ?", array(1))
@@ -216,10 +218,15 @@ db_select("select * from tbl_person where person_id = :person_id", array('person
 ```sql
 select * from tbl_person where person_id = 1
 ```
+</br>
+</br>
+</br>
 
 # function db_insert()
 
 PHP에서 MySQL 데이터베이스에서 데이터를 입력하기 위한 코드이다.
+
+db_insert 함수는 성공할 경우 PK 를, 실패할 경우 false 를 반환하므로 === false 체크 후 사용하면 된다.
 ```php
 function db_insert($query, $param = array())
 {
@@ -242,13 +249,14 @@ function db_insert($query, $param = array())
 }
 ```
 
-\$pdo->lastInsertId() 메소드는 자동으로 설정되는 PK 를 가지고 온다.
+
 ```php
 $last_id = $pdo->lastInsertId();
+
+
+$pdo->lastInsertId() 메소드는 자동으로 설정되는 PK 를 가지고 온다.
 ```
-db_insert 함수는 성공할 경우 PK 를, 실패할 경우 false 를 반환하므로 === false 체크 후 사용하면 된다.
-</br>
-</br>
+
 
 ```php
 if ($result) {
