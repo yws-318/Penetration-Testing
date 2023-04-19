@@ -47,6 +47,7 @@ select pass from member where id='mario'
 ![5](https://user-images.githubusercontent.com/106296883/232677748-9f142f84-3193-4c49-a9bb-dc2cdc552b4e.PNG)
 
 뭐가 다른 거지? 
+or 말고 없나
 </br>
 </br>
 </br>
