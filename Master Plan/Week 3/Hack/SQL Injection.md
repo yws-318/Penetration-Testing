@@ -9,7 +9,7 @@ SQL Injectio 공격을 하려면 우선 SQL에 대해서 알아야 한다.
 ## SQL
 database : 엑셀 파일   
 table : 엑셀 시트    
-colum : 열    
+column : 열    
 row : 행   
 </br>
 
