@@ -47,14 +47,40 @@ select pass from member where id='mario'
 ![5](https://user-images.githubusercontent.com/106296883/232677748-9f142f84-3193-4c49-a9bb-dc2cdc552b4e.PNG)
 
 뭐가 다른 거지? 
-or 말고 없나
+
+분리에서의 주석처리는 의미없어 보인다.
 </br>
 </br>
 </br>
 
 # or
 
+id : mario' or '1'='1 입력한다면
+```
+id : mario' or '1'='1
+```
+![6](https://user-images.githubusercontent.com/106296883/233332562-7d10d334-fd07-40ce-8710-9b729c467248.PNG)
 
+모든 데이터가 나온다.
+
+```
+id : mario' or '1'='1
+
+id : mario = TRUE
+'1'='1'    = TRUE
+
+select pass from member where TRUE
+```
+![7](https://user-images.githubusercontent.com/106296883/233333418-300babdb-6984-4817-ac8d-6d85386c10e0.PNG)
+</br>
+</br>
+</br>
+
+# union
+
+
+
+## 분리는 전체적으로 잘 모르겠다.
 
 
 
