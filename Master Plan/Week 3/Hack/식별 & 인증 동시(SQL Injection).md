@@ -206,7 +206,7 @@ select * from member where id='mario' union select 1,2,3,4 #' and pass='1234'
 #' and pass='1234'
 ```
 
-나머지 부분을 처리하게 된다면 결과는 mario 정보와 colum 마다 새롭게 넣은 정보가 들어간다.
+나머지 부분을 처리하게 된다면 결과는 mario 정보와 column 마다 새롭게 넣은 정보가 들어간다.
 ```
 select * from member where id='mario' union select 1,2,3,4
 ```
@@ -214,7 +214,7 @@ select * from member where id='mario' union select 1,2,3,4
 
 
 
-결국 union 을 제대로 활용하려면 table 의 colum 의 개수를 정확하게 알아야 한다.
+결국 union 을 제대로 활용하려면 table 의 column 의 개수를 정확하게 알아야 한다.
 
 1,2,3,4 가 아니라 1,2,3 을 넣게 된다면 오류가 발생하여 새로운 정보가 주입되지 않는다.
 </br>
