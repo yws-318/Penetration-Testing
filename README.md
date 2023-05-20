@@ -12,3 +12,4 @@
 ➡ [5주차](https://github.com/yws-318/Penetration-Testing/tree/main/Master%20Plan/Week%205)<br />
 ➡ [6주차](https://github.com/yws-318/Penetration-Testing/tree/main/Master%20Plan/Week%206)<br />
 ➡ [7주차](https://github.com/yws-318/Penetration-Testing/tree/main/Master%20Plan/Week%207)<br />
+➡ [8주차](https://github.com/yws-318/Penetration-Testing/tree/main/Master%20Plan/Week%208)<br />
